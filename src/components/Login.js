@@ -6,22 +6,21 @@ import { useAuth } from '../Contexts/AuthContext';
 export default function Login() {
     const emailRef = useRef();
     const passwordRef = useRef();
-    const confirmPasswordRef = useRef();
-    const { signup } = useAuth();
+    const { login } = useAuth();
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
 
     async function handleSubmit(e) {
        e.preventDefault();
 
-       if(passwordRef.current.value !== confirmPasswordRef.current.value) {
-           return setError('Password not matched');
-       }
+    //    if(passwordRef.current.value !== confirmPasswordRef.current.value) {
+    //        return setError('Password not matched');
+    //    }
 
        try {
           setError('');
           setLoading(true);
-          await signup(emailRef.current.value, passwordRef.current.value);
+          await login(emailRef.current.value, passwordRef.current.value);
        } catch {
            return setError('Failed to create an account');
        }
@@ -46,7 +45,7 @@ export default function Login() {
                             <Form.Control type="password" ref={passwordRef} placeholder="Enter Password" required />
                         </Form.Group>
                         <Button disabled={loading} className="w-100 mb-3" type="submit">
-                            Sign Up
+                            Login 
                         </Button>
                     </Form>
 
