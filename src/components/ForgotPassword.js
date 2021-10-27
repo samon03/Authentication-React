@@ -20,7 +20,7 @@ export default function ForgotPassword() {
           await resetPassword(emailRef.current.value);
           setMessage('Please checkout your inbox');
        } catch {
-           return setError('Failed to login');
+           return setError('Failed to reset password');
        }
 
        setLoading(false);
